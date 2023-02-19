@@ -2,13 +2,15 @@ import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
-  getDoc,
   addDoc,
   doc,
   onSnapshot,
-  collectionGroup,
+  orderBy,
+  query,
 } from "firebase/firestore";
-import { initializeAuth } from "firebase/auth";
+
+import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDf5xpH-oCM9Ot6NknJKvZVtHc5SCoUU4E",
 
@@ -27,43 +29,80 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-const auth = initializeAuth(app);
+const auth = getAuth(app);
+
+const googleprovider = new GoogleAuthProvider();
+googleprovider.setCustomParameters(
+  // this will internally open the prompt setting for the select account
+  {
+    prompt: "select_account",
+  }
+);
+
+export async function googleLogin() {
+  try {
+    return await signInWithPopup(auth, googleprovider);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 export async function getChannels(setchannels) {
-  // const querySnapshot = await getDocs(collection(db, "rooms"));
-  // if (!querySnapshot.empty) {
-  //   // console.log(querySnapshot, "this is  the snapShot");
-  //   const _documents = querySnapshot.docs.map((doc) => ({
-  //     id: doc.id,
-  //     data: doc.data(),
-  //   }));
-
-  //   setchannels(_documents);
-  // }
-  const collectionref = collectionGroup(db, "rooms");
-  console.log(collectionref);
-
-   onSnapshot(collectionref, (snapShot) => {
-    setchannels(
-      snapShot.docs.map((_doc) => {
-        console.log(_doc, "This is the document");
-        return {
-          id: _doc.id,
-          data: _doc.data(),
-        };
-      })
-    );
-  });
+  const collectionref = collection(db, "rooms");
+  try {
+    onSnapshot(collectionref, (snapShot) => {
+      setchannels(
+        snapShot.docs.map((_doc) => {
+          return {
+            id: _doc.id,
+            data: _doc.data(),
+          };
+        })
+      );
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 }
+
 export async function setChannel(object) {
-  await addDoc(collection(db, "rooms"), { roomname: object });
+  const docref = await addDoc(collection(db, "rooms"), { roomname: object });
+  console.log(docref, "Document");
 }
 
-export async function getMessages(docID)
-{
-  // const collectionref = collection(db,"rooms",docID);
+export async function getMessages(docID, setMessages) {
+  const docref = doc(db, "rooms", docID);
+  const colRef = collection(db, `${docref.path}/messages`);
+  const _query = query(colRef, orderBy("time", "asc"));
 
-
-
+  try {
+    onSnapshot(_query, (snapshot) => {
+      setMessages(
+        snapshot.docs.map((doc) => {
+          return {
+            user: doc.data().user,
+            message: doc.data().user_message,
+            icon: doc.data().icon,
+          };
+        })
+      );
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 }
-export default db;
+
+export async function addMessages(docID, message) {
+  // Create the message for the in the rooms / doc ID /MESSAGE / DOCid/ ADDING THE data
+  const docref = doc(db, "rooms", docID);
+  const colref = collection(db, `${docref.path}/messages`);
+  const date = new Date();
+
+  await addDoc(colref, {
+    user: localStorage.getItem("displayname"),
+    user_message: message,
+    icon: localStorage.getItem("photourl"),
+    time: date,
+  }); 
+}
+

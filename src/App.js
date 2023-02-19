@@ -1,21 +1,20 @@
-import { Header } from "./Component/Header/Header";
-import { Sidebar } from "./Component/Sidebar/Sidebar";
-import { Chat } from "./Component/Chat/Chat";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from "./Component/Home/Home";
+import { Login } from "./Component/auth/Login";
+import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
+import { ChatBox } from "./Component/ChatBox/ChatBox";
+import {NotFound} from "./Component/NotFound/NotFound"
+
 function App() {
   return (
-    <div className="App w-screen h-full">
-      <Router>
-        <Header />
-        <div className="flex  h-full">
-          <Sidebar />
-          <Routes>
-          <Route path="/rooms/:docID"   element={<Chat />} >
-          </Route>
-          </Routes>
-        </div>
-      </Router>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}>
+        <Route path="rooms/:docID" element= {<ChatBox/>}/>
+        </Route>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

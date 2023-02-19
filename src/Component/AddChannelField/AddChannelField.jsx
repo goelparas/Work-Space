@@ -1,6 +1,6 @@
 import React ,{useState}from "react";
 import { setChannel } from "../../resources/Firebase/firebaseconfig";
-export const InputChannel = ({ stateHandler }) => {
+export const AddChannelField = ({ stateHandler }) => {
 
 const [roomname,setroomname]  = useState("");
 
