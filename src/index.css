@@ -2,14 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-
-html,body{
-    max-height:100vh;
-    
+html,
+body {
+  max-height: 100vh;
 }
 
-#root{
-    position:fixed;
-    height:100%;
-    
+#root {
+  position: fixed;
+  height: 100%;
+  width:100%;
+  
+}
+
+.scrollbar__container::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar__container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

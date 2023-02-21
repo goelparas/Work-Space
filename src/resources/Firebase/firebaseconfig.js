@@ -7,6 +7,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  deleteDoc
 } from "firebase/firestore";
 
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
@@ -66,8 +67,14 @@ export async function getChannels(setchannels) {
 }
 
 export async function setChannel(object) {
-  const docref = await addDoc(collection(db, "rooms"), { roomname: object });
-  console.log(docref, "Document");
+ await addDoc(collection(db, "rooms"), { roomname: object });
+ 
+}
+export async function removeChannel(docID)
+{
+  const docref = doc(db,"rooms",docID)
+  await deleteDoc(docref);
+
 }
 
 export async function getMessages(docID, setMessages) {

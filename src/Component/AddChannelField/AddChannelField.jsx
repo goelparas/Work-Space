@@ -8,18 +8,26 @@ export const AddChannelField = ({ stateHandler }) => {
     setroomname(value);
   };
   const handleSubmit = (e) => {
-    setChannel(roomname);
+    if(roomname!=="")
+    {
+
+      setChannel(roomname);
+    }
     stateHandler();
   };
   return (
-    <div className="absolute top-0 left-16  text-black">
-      <form onSubmit={handleSubmit} className="flex  p-2 rounded-lg border bg-white ">
+    <div className="absolute top-8  left-16 text-black z-30">
+      <form onSubmit={handleSubmit} className="flex  p-2 rounded-lg border bg-white  ">
         <input
+        className="outline-none "
           type={"text"}
           placeholder="Enter the Room name"
           value={roomname}
           name={"roomname"}
+          maxLength="10"
           onChange={handleChange}
+          required
+          autoComplete="off"
         ></input>
         <button type="submit">Add</button>
       </form>
