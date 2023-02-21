@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Icon } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { AddChannelField } from '../AddChannelField/AddChannelField';
-export const CreateChannel = ({ Icon, title ,id ,   allowInputField}) => {
+export const CreateChannel = ({ Icon, title ,id ,   allowInputField , changeField}) => {
     const [inputButton,  setinputButton] = useState(false);
 
     const navigate = useNavigate();
@@ -13,6 +13,12 @@ export const CreateChannel = ({ Icon, title ,id ,   allowInputField}) => {
             navigate(`/rooms/${id}`)
         }
         setinputButton(!inputButton);
+        if(changeField)
+        {
+
+            changeField(title);
+        }
+
     }
     const handlebutton= ()=>{
         setinputButton(!inputButton);
@@ -21,10 +27,10 @@ export const CreateChannel = ({ Icon, title ,id ,   allowInputField}) => {
     
 
 return (
-        <div className=' channel_container relative flex justify-evenly'>
-        <div  className='flex gap-2 p-2  border-y-black justify-start hover:cursor-pointer hover:bg-hovergrey ' onClick={handleClick}>
+        <div className=' channel_container relative flex justify-center  '>
+        <div  className='flex gap-2 p-3  border-y-black  hover:cursor-pointer hover:shadow-md min-w-100p  sm:justify-center rounded-xl shadow-sm' onClick={handleClick}>
             {Icon && <Icon />}
-            {Icon ? (<h2>{title}</h2>):(<h3>#{title}</h3>)}
+            {Icon ? (<h2  className="font-normal text-sm" >{title}</h2>):(<h3 className="font-normal  md:text-xs lg:text-sm"># {title}</h3>)}
         
         </div>
         {

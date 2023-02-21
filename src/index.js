@@ -7,6 +7,6 @@ import { UserProvider } from "./context/UserProvider";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserProvider>
-    <App />
+    <App/>
   </UserProvider>
 );

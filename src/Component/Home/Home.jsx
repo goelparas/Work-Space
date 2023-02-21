@@ -16,15 +16,15 @@ export const Home = () => {
   });
 
   return (
-    <div className="flex flex-col  w-100p  fixed h-screen">
+    <div className="flex flex-col  w-100p  fixed h-100p">
       {checkLoginStatus() ? (
         <>
-          <div className="header__container  min-h-10p ">
+          <div className="header__container  min-h-10p  ">
             <Header />
           </div>
           <div className="chatbox__container  flex flex-row min-h-90p">
             <SideBar />
-            {docID ? <Outlet />:<div><PromptMessage/></div>}
+            {docID ? <Outlet />:<PromptMessage/>}
           </div>
         </>
       ) : (

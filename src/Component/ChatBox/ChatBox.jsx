@@ -33,8 +33,8 @@ export const ChatBox = () => {
 
   return (
     <>
-      <div className="flex flex-col w-80p  justify-between  flex-grow">
-        <div className="messages__container border min-h-90p overflow-y-scroll overflow-x-hidden flex flex-col gap-4 items-end p-6">
+      <div className="flex flex-col w-80p  justify-between  flex-grow ">
+        <div className="messages__container border min-h-90p overflow-y-scroll overflow-x-hidden flex flex-col gap-4 items-end p-6 tall:min-h-94p">
           {messages.map((item,index) => {
             return (
               <Message
@@ -47,10 +47,10 @@ export const ChatBox = () => {
           })}
         </div>
 
-        <div className="form__container w-100p px-2 min-h-10p">
-          <form onSubmit={handleSubmit} className="flex justify-between p-1">
+        <div className="form__container w-100p min-h-10p tall:min-h-6p">
+          <form onSubmit={handleSubmit} className="flex justify-between min-h-100p"  sx={{border:"1px 0px  solid black" }}>
             <input
-              className="w-90p border p-4"
+              className="w-90p border p-4 outline-none"
               type="text"
               value={message}
               name={"message"}
@@ -58,9 +58,10 @@ export const ChatBox = () => {
               placeholder="Send Message"
               autoComplete="off"
               required
+             
             />
-            <Button type="submit" className="w-10p">
-              Send{" "}
+            <Button type="submit" className="w-10p rounded-right" sx={{backgroundColor:"#8F00FF",color:"white",borderRadius:"none"}} >
+              Send
             </Button>
           </form>
         </div>
