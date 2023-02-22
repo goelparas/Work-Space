@@ -45,9 +45,9 @@ export const CreateChannel = ({
          
           {Icon && <Icon />}
           {Icon ? (
-            <h2 className="font-thin text-xs">{title}</h2>
+            <h2 className="font-light text-xs sm:text-white lg:text-black lg:text-sm">{title}</h2>
           ) : (
-            <h3 className="font-thin  sm:text-xs "># {title}</h3>
+            <h3 className=" font-light  sm:text-xs sm:text-white lg:text-black lg:text-sm"># {title}</h3>
           )}
         </div >
         {!allowInputField ? (

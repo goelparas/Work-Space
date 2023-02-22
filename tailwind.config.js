@@ -120,7 +120,7 @@ module.exports = {
         "90vw": "90vw",
       },
       backgroundColor: {
-        primaryviolet: "#8F00FF",
+        primaryviolet: "#7C68FB",
         hovergrey: "#808080",
         primaryblue:
           "linear-gradient(97deg, rgba(0,173,179,1) 63%, rgba(13,255,255,1) 100%)",

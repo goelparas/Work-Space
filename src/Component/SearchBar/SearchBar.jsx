@@ -29,9 +29,9 @@ export const Searchbar = () => {
           onChange={handleChange}
           value={formvalue}
           name="formvalue"
-          className="p-2 bg-white rounded-left outline-none max-w-70p  min-w-70p z-10 text-black"
+          className="p-2 bg-white rounded-left outline-none max-w-70p  min-w-70p z-10 text-black sm:text-sm "
           autoComplete="off"
-          placeholder="Search Channel..."
+          placeholder=" Search Channel..."
         />
         <button className="bg-white p-2 rounded-right max-w-30p  min-w-30p  flex justify-end z-10 text-black">
           <Search />
