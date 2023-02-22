@@ -1,4 +1,4 @@
- CLICK [here](https://woorkspaacee.netlify.app/) to view the project
+ Click [here](https://woorkspaacee.netlify.app/) to view the project
 
 Workspace - Professional Chat Application
 
