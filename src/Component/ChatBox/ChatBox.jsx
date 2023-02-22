@@ -7,7 +7,7 @@ import {
 import { Message } from "../Message/Message";
 import { Button } from "@mui/material";
 
-export const ChatBox = () => {
+export const Chatbox = () => {
   const defaultform = {
     message: "",
   };

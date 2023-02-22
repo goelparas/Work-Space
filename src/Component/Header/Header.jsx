@@ -1,12 +1,12 @@
 import { Avatar } from "@mui/material";
 import { Help, ToggleOn, ToggleOff } from "@mui/icons-material";
 import React, { useContext, useState } from "react";
-import { SearchBar } from "../SearchBar/SearchBar";
+import { Searchbar } from "../Searchbar/Searchbar";
 import { UserContext } from "../../context/UserProvider";
 import image from "../../resources/Icons/Office.svg";
 export const Header = () => {
   const { toggle, setToggle } = useContext(UserContext);
-  const [detail, setdetail] = useState(false);
+  const [detail, setdetail] = useState(true);
 
   const sidebarHandler = () => {
     setToggle(!toggle);
@@ -18,7 +18,7 @@ export const Header = () => {
     <div className="header  flex w-full flex-row justify-between bg-primaryviolet h-100p items-center p-1 shadow-lg">
       <div className="header_search w-50p text-left sm:hidden md:block">
         <div className="max-w-100p">
-          <SearchBar />
+          <Searchbar />
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export const Header = () => {
         />
         {detail ? (
           <div className="w-200 h-200 absolute top-16 border shadow-2xl flex flex-col justify-evenly items-center rounded-2xl bg-white">
-            <img src={image} alt="Image" className="w-70p" />
+            <img src={image} alt="" className="w-70p" />
             <p className="font-thin text-xs p-4">
               "Workspace: Because who needs actual human interaction when you
               can communicate through a screen with your co-workers all day

@@ -13,6 +13,7 @@ import {
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
 
 const firebaseConfig = {
+
   apiKey: "AIzaSyDf5xpH-oCM9Ot6NknJKvZVtHc5SCoUU4E",
 
   authDomain: "slack-840d0.firebaseapp.com",
@@ -25,8 +26,10 @@ const firebaseConfig = {
 
   appId: "1:38386514208:web:91fad751c992233e4bbf45",
 
-  measurementId: "G-E02MQD5NSB",
+  measurementId: "G-E02MQD5NSB"
+
 };
+
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

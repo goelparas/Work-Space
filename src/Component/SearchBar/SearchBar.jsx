@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../../context/UserProvider";
 import { Search } from "@mui/icons-material";
-export const SearchBar = () => {
+export const Searchbar = () => {
   const [formvalue, setformvalue] = useState("");
   const { channels, setfilteredChannels } = useContext(UserContext);
   const handleChange = (event) => {

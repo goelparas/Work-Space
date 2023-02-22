@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useNavigate } from "react-router-dom";
-import { AddChannelField } from "../AddChannelField/AddChannelField";
+import { Addchannel } from "../Addchannel/Addchannel";
 import { removeChannel } from "../../resources/Firebase/firebaseconfig";
 export const CreateChannel = ({
   Icon,
@@ -11,12 +11,12 @@ export const CreateChannel = ({
   changeField,
 }) => {
   const [inputButton, setinputButton] = useState(false);
-
+  const [isdeleteClicked, setDeleteclicked] = useState(false);
   const navigate = useNavigate();
 
 
   const handleClick = () => {
-    if (id != undefined) {
+    if (id !== undefined &&!isdeleteClicked) {
       navigate(`/rooms/${id}`);
     }
     setinputButton(!inputButton);
@@ -28,7 +28,11 @@ export const CreateChannel = ({
     setinputButton(!inputButton);
   };
   const deleteChannel = () => {
-    removeChannel(id);
+    setDeleteclicked(true);
+    if(isdeleteClicked){
+      removeChannel(id);
+      navigate("/");
+    }
   };
 
   return (
@@ -57,7 +61,7 @@ export const CreateChannel = ({
         )}
       </div>
       {allowInputField && inputButton ? (
-        <AddChannelField stateHandler={handlebutton} />
+        <Addchannel stateHandler={handlebutton} />
       ) : (
         <></>
       )}

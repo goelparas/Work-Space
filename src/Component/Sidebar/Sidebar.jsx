@@ -6,10 +6,10 @@ import PhoneSharpIcon from "@mui/icons-material/PhoneSharp";
 import { CreateChannel } from "./Channel";
 import { getChannels } from "../../resources/Firebase/firebaseconfig";
 import { Add } from "@mui/icons-material";
-import { SearchBar } from "../SearchBar/SearchBar";
-import { display } from "@mui/system";
+import { Searchbar } from "../Searchbar/Searchbar";
 
-export const SideBar = () => {
+
+export const Sidebar = () => {
   const { setchannels, filterChannels, setfilteredChannels, toggle } =
     useContext(UserContext);
 
@@ -76,7 +76,7 @@ export const SideBar = () => {
           <div className="sidebar__header  flex flex-col  gap-4 justify-center items-center py-6  shadow-md   bg-primaryviolet text-white  w-100p  h-150 rounded-botom">
            
               
-                <SearchBar />
+                <Searchbar />
            
             <div className="addchannel__container flex-col items-center justify-center w-100p">
               <CreateChannel

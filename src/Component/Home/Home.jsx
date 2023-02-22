@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { SideBar } from "../Sidebar/SideBar";
+import { Sidebar } from "../Sidebar/Sidebar";
 import { Header } from "../Header/Header";
-import { ChatBox } from "../ChatBox/ChatBox";
 import { checkLoginStatus } from "../../store/Userstore";
-import {PromptMessage} from "../PromptMessage/PromptMessage";
+import {Promptmessage} from "../Promptmessage/Promptmessage";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -22,9 +21,9 @@ export const Home = () => {
           <div className="header__container  min-h-10p  ">
             <Header />
           </div>
-          <div className="chatbox__container  flex flex-row min-h-90p">
-            <SideBar />
-            {docID ? <Outlet />:<PromptMessage/>}
+          <div className="Chatbox__container  flex flex-row min-h-90p">
+            <Sidebar />
+            {docID ? <Outlet />:<Promptmessage/>}
           </div>
         </>
       ) : (
